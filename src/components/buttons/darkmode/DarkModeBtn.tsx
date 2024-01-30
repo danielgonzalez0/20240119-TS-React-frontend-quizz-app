@@ -1,29 +1,29 @@
-import { useState } from 'react';
-import {
-  DarkModeContainer,
-} from './darkModeBtnStyle';
+import { DarkModeContainer } from './darkModeBtnStyle';
 import moonDarkImg from '../../../assets/images/icon-moon-dark.svg';
 import sunDarkImg from '../../../assets/images/icon-sun-dark.svg';
 import moonLightImg from '../../../assets/images/icon-moon-light.svg';
 import sunLightImg from '../../../assets/images/icon-sun-light.svg';
+import { useAppDispatch, useAppSelector } from '../../../hooks/reduxTypedHooks';
+import { toggleDarkMode } from '../../../redux/darkMode.slice';
 
-const DarkModeBtn = () => {
-  const [darkMode, setDarkMode] = useState(false);
+const DarkModeBtn:React.FC = () => {
+  const dispatch = useAppDispatch();
+  const darkMode = useAppSelector((state) => state.darkMode);
 
   const handleDarkMode = (): void => {
-    setDarkMode(!darkMode);
+    dispatch(toggleDarkMode());
   };
 
-  return ( 
+  return (
     <DarkModeContainer>
       <span className="icon">
-        <img src={darkMode ? sunDarkImg : sunLightImg} alt="icon sun" />
+        <img src={darkMode ? sunLightImg : sunDarkImg} alt="icon sun" />
       </span>
       <button onClick={handleDarkMode}>
-        <span id="dark_mode_ball" className={darkMode ? "active" : ""}></span>
+        <span id="dark_mode_ball" className={darkMode ? 'active' : ''}></span>
       </button>
       <span className="icon">
-        <img src={darkMode ? moonDarkImg : moonLightImg} alt="icon moon" />
+        <img src={darkMode ? moonLightImg : moonDarkImg} alt="icon moon" />
       </span>
     </DarkModeContainer>
   );

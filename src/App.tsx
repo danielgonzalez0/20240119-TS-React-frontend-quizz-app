@@ -1,6 +1,8 @@
-import { useState } from 'react';
+
 import styled from 'styled-components';
 import DarkModeBtn from './components/buttons/darkmode/DarkModeBtn';
+import { GlobalStyle } from './styles/globalSettings';
+import { useAppSelector } from './hooks/reduxTypedHooks';
 
 const Title = styled.h1`
   font-family: ${(props) => props.theme.typography.headingL.fontFamily};
@@ -10,19 +12,14 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-function App() {
-  const [count, setCount] = useState(0);
+const App: React.FC = ()=> {
+  const darkMode = useAppSelector((state) => state.darkMode);
 
   return (
     <>
+    <GlobalStyle darkMode={darkMode}/>
       <Title>Lorem ipsum</Title>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-
-        </button>
           <DarkModeBtn/>
-      </div>
     </>
   );
 }

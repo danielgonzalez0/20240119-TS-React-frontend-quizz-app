@@ -7,9 +7,7 @@ export const DarkModeContainer = styled.div`
   max-width: 128px;
   max-height: 28px;
 
-  //a supprimer
-  border: solid 1px ${(props) => props.theme.colors.quinary};
-  background-color: red;
+
 
   .icon {
     display: flex;
