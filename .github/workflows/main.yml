@@ -21,7 +21,7 @@ jobs:
           cache: 'pnpm'
       
       - name: install dependencies
-        run: pnpm ci
+        run: pnpm install
       
       - name: run linter
         run: npm run lint
@@ -46,7 +46,7 @@ jobs:
           cache: 'pnpm'
       
       - name: install dependencies
-        run: pnpm ci
+        run: pnmp install
 
       - name: run test
         run: npm run test
