@@ -1,8 +1,8 @@
 name: CI
 
 on:
-  push: 
-    branches: ["main", "develop"]
+  push:
+    branches: ['main', 'develop']
 
 jobs:
   Lint:
@@ -19,17 +19,17 @@ jobs:
         with:
           node-version: 18
           cache: 'pnpm'
-      
+
       - name: install dependencies
         run: pnpm install
-      
+
       - name: run linter
         run: npm run lint
 
       - name: run type check
         run: npm run typecheck
 
-  build_and_test: 
+  build_and_test:
     runs-on: ubuntu-latest
     needs: Lint
     steps:
@@ -44,9 +44,9 @@ jobs:
         with:
           node-version: 18
           cache: 'pnpm'
-      
+
       - name: install dependencies
-        run: pnmp install
+        run: pnpm install
 
       - name: run test
         run: npm run test
