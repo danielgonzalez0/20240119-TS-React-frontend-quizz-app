@@ -1,8 +1,7 @@
-
-import styled from 'styled-components';
-import DarkModeBtn from './components/buttons/darkmode/DarkModeBtn';
-import { GlobalStyle } from './styles/globalSettings';
-import { useAppSelector } from './hooks/reduxTypedHooks';
+import styled from "styled-components";
+import DarkModeBtn from "./components/buttons/darkmode/DarkModeBtn";
+import { GlobalStyle } from "./styles/globalSettings";
+import { useAppSelector } from "./hooks/reduxTypedHooks";
 
 const Title = styled.h1`
   font-family: ${(props) => props.theme.typography.headingL.fontFamily};
@@ -12,16 +11,16 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-const App: React.FC = ()=> {
+const App: React.FC = () => {
   const darkMode = useAppSelector((state) => state.darkMode);
 
   return (
     <>
-    <GlobalStyle darkMode={darkMode}/>
+      <GlobalStyle darkMode={darkMode} />
       <Title>Lorem ipsum</Title>
-          <DarkModeBtn/>
+      <DarkModeBtn />
     </>
   );
-}
+};
 
 export default App;

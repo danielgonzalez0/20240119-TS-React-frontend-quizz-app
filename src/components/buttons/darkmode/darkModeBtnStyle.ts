@@ -1,13 +1,10 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 export const DarkModeContainer = styled.div`
   display: flex;
   justify-content: space-between;
   max-width: 128px;
   max-height: 28px;
-
-
 
   .icon {
     display: flex;
@@ -46,6 +43,3 @@ export const DarkModeContainer = styled.div`
     transform: translateX(18px);
   }
 `;
-
-
-
