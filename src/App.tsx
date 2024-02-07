@@ -1,29 +1,26 @@
-import { useState } from 'react'
-import styled from 'styled-components';
-
+import styled from "styled-components";
+import DarkModeBtn from "./components/buttons/darkmode/DarkModeBtn";
+import { GlobalStyle } from "./styles/globalSettings";
+import { useAppSelector } from "./hooks/reduxTypedHooks";
 
 const Title = styled.h1`
-  font-family: ${props => props.theme.typography.headingLRegular.fontFamily};
-  font-size: ${props => props.theme.typography.headingL.fontSize};
-  line-height: ${props => props.theme.typography.headingL.lineHeight};
-  font-weight: normal;
-  color: ${props => props.theme.colors.primary};
-  text-align: center;
-  `
+  font-family: ${(props) => props.theme.typography.headingL.fontFamily};
+  font-size: ${(props) => props.theme.typography.headingL.fontSize};
+  line-height: ${(props) => props.theme.typography.headingL.lineHeight};
 
-function App() {
-  const [count, setCount] = useState(0)
+  text-align: center;
+`;
+
+const App: React.FC = () => {
+  const darkMode = useAppSelector((state) => state.darkMode);
 
   return (
     <>
+      <GlobalStyle darkMode={darkMode} />
       <Title>Lorem ipsum</Title>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
+      <DarkModeBtn />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
