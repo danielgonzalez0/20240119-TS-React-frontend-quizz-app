@@ -2,6 +2,7 @@ import styled from "styled-components";
 import DarkModeBtn from "./components/buttons/darkmode/DarkModeBtn";
 import { GlobalStyle } from "./styles/globalSettings";
 import { useAppSelector } from "./hooks/reduxTypedHooks";
+import DisplayData from "./components/displayData/DisplayData";
 
 const Title = styled.h1`
   font-family: ${(props) => props.theme.typography.headingL.fontFamily};
@@ -19,6 +20,7 @@ const App: React.FC = () => {
       <GlobalStyle darkMode={darkMode} />
       <Title>Lorem ipsum lessons</Title>
       <DarkModeBtn />
+      <DisplayData />
     </>
   );
 };
