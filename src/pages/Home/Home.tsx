@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import DarkModeBtn from '../../components/buttons/darkmode/DarkModeBtn';
+import QuizzList from './quizzList/QuizzList';
 
 
 const Title = styled.h1`
@@ -12,10 +13,12 @@ const Title = styled.h1`
 `;
 
 const Home: React.FC = () => {
+  
   return (
     <>
       <Title>Lorem ipsum</Title>
       <DarkModeBtn />
+      <QuizzList />
     </>
   );
 };
