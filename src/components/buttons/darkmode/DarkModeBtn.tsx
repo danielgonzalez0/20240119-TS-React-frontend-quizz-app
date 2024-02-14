@@ -5,10 +5,11 @@ import moonLightImg from "../../../assets/images/icon-moon-light.svg";
 import sunLightImg from "../../../assets/images/icon-sun-light.svg";
 import { useAppDispatch, useAppSelector } from "../../../hooks/reduxTypedHooks";
 import { toggleDarkMode } from "../../../redux/darkMode.slice";
+import { RootState } from "../../../redux/store";
 
 const DarkModeBtn: React.FC = () => {
   const dispatch = useAppDispatch();
-  const darkMode = useAppSelector((state) => state.darkMode);
+  const darkMode = useAppSelector((state: RootState) => state.darkMode);
 
   const handleDarkMode = (): void => {
     dispatch(toggleDarkMode());

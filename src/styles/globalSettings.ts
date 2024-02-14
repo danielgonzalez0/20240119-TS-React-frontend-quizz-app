@@ -86,6 +86,9 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 
   * {
     box-sizing: border-box;
+    ul{
+      list-style: none;
+    }
   }
   body {
     margin: 0;

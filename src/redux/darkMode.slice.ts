@@ -1,9 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import 'symbol-observable';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: boolean = false;
 
 const darkModeSlice = createSlice({
-  name: "isDarkMode",
+  name: 'isDarkMode',
   initialState,
   reducers: {
     toggleDarkMode: (state: boolean) => {
