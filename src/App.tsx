@@ -17,7 +17,7 @@ const App: React.FC = () => {
   return (
     <>
       <GlobalStyle darkMode={darkMode} />
-      <Title>Lorem ipsum</Title>
+      <Title>Lorem ipsum lessons</Title>
       <DarkModeBtn />
     </>
   );
