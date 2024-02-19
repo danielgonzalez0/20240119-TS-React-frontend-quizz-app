@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export const theme = {
   size: {
-    smallmobile: '375px',
+    smallmobile: '500px',
     mobile: '768px',
     tablet: '1024px',
   },
@@ -90,6 +90,7 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
     padding: 0;
   }
   body {
+    margin: 6% 9%;
 
     background: ${({ $darkMode }) =>
       $darkMode
@@ -132,6 +133,10 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   a {
     color: ${({ theme, $darkMode }) => ($darkMode ? theme.colors.septenary : theme.colors.secondary)};
     text-decoration: none;
+  }
+
+  li{
+    list-style: none;
   }
   // Ajoutez d'autres styles globaux ici
 `;

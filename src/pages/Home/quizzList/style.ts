@@ -18,7 +18,7 @@ export const ListContainer = styled.ul`
 
 
 
-export const H2 = styled.h2`
+export const IconTitle = styled.p`
   font-family: ${({theme}) => theme.typography.headingS.fontFamily};
   font-size: ${({theme}) => theme.typography.headingS.fontSize};
   line-height: ${({theme}) => theme.typography.headingS.lineHeight};

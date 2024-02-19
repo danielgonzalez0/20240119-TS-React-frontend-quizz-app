@@ -3,6 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { GET_QUIZ } from '../../graphql/queries';
 import { CustomLink, Title } from './style';
+import Header from '../../components/header/Header';
 
 const Quiz: React.FC = () => {
   const { quizId } = useParams<{ quizId?: string }>();
@@ -17,12 +18,19 @@ const Quiz: React.FC = () => {
   if (!data.quiz)
     return (
       <Title>
-        Erreur 404: Cette page n'existe pas
-        <CustomLink to="/">Retourner à la page d'accueil</CustomLink>
+        Erreur 404: this page does not exist.
+        <CustomLink to="/">Return to the home page</CustomLink>
       </Title>
     );
 
-  return <div>page for quiz number {data.quiz.title}</div>;
+  return (
+
+    <>
+    <Header title={data.quiz.title} icon={data.quiz.icon} color={data.quiz.color} />
+    <div>page for quiz number {data.quiz.title}</div>;
+    </>
+  )
+  
 };
 
 export default Quiz;

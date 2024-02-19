@@ -15,7 +15,7 @@ const DarkModeBtn: React.FC = () => {
   };
 
   return (
-    <DarkModeContainer>
+    <DarkModeContainer id="darkModeBtn">
       <span className="icon">
         <img src={darkMode ? sunLightImg : sunDarkImg} alt="icon sun" />
       </span>

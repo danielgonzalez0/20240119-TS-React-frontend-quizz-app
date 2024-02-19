@@ -2,9 +2,10 @@ import { useQuery } from '@apollo/client';
 import { useAppSelector } from '../../../hooks/reduxTypedHooks';
 import { RootState } from '../../../redux/store';
 import { GET_QUIZZES } from '../../../graphql/queries';
-import { H2, ListContainer, QuizzListContainer } from './style';
+import { ListContainer, QuizzListContainer } from './style';
 import { quizz } from '../../../interfaces/interfaces';
 import { Link } from 'react-router-dom';
+import Icons from '../../../components/icons/Icons';
 
 const QuizzList: React.FC = () => {
   const darkMode = useAppSelector((state: RootState) => state.darkMode);
@@ -27,20 +28,15 @@ const QuizzList: React.FC = () => {
       {data &&
         data.quizzes.map((quizz: quizz) => {
           return (
-            <QuizzListContainer
-                $darkMode={darkMode}
-                key={quizz.id}
-              >
-            <Link to={`/quiz/${quizz.id}`}>
-                <div
-                  className="icon-container"
-                  style={{ backgroundColor: `#${quizz.color}` }}
-                >
-                  <img src={quizz.icon} alt={quizz.title} />
-                </div>
-                <H2>{quizz.title}</H2>
-                </Link>
-              </QuizzListContainer>
+            <QuizzListContainer $darkMode={darkMode} key={quizz.id}>
+              <Link to={`/quiz/${quizz.id}`}>
+                <Icons
+                  title={quizz.title}
+                  icon={quizz.icon}
+                  color={quizz.color}
+                />
+              </Link>
+            </QuizzListContainer>
           );
         })}
     </ListContainer>
