@@ -24,7 +24,7 @@ const QuizzList: React.FC = () => {
     );
 
   return (
-    <ListContainer>
+    <ListContainer data-testid="list-test">
       {data &&
         data.quizzes.map((quizz: quizz) => {
           return (

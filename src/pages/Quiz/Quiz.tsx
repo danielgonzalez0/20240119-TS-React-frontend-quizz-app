@@ -6,11 +6,15 @@ import { CustomLink, Title } from './style';
 import Header from '../../components/header/Header';
 
 const Quiz: React.FC = () => {
+  //variables
   const { quizId } = useParams<{ quizId?: string }>();
+
+  //data fetching
   const { data, loading, error } = useQuery(GET_QUIZ, {
     variables: { id: quizId },
   });
 
+  //rendering
   if (loading) return <Title>Loading...</Title>;
 
   if (error) return <Title>Error! ${error.message}</Title>;
@@ -24,13 +28,15 @@ const Quiz: React.FC = () => {
     );
 
   return (
-
     <>
-    <Header title={data.quiz.title} icon={data.quiz.icon} color={data.quiz.color} />
-    <div>page for quiz number {data.quiz.title}</div>;
+      <Header
+        title={data.quiz.title}
+        icon={data.quiz.icon}
+        color={data.quiz.color}
+      />
+      <div>page for quiz number {data.quiz.title}</div>
     </>
-  )
-  
+  );
 };
 
 export default Quiz;
