@@ -29,7 +29,7 @@ const QuizzList: React.FC = () => {
         data.quizzes.map((quizz: quizz) => {
           return (
             <QuizzListContainer $darkMode={darkMode} key={quizz.id}>
-              <Link to={`/quiz/${quizz.id}`}>
+              <Link to={`/quiz/${quizz.id}`} className='link'>
                 <Icons
                   title={quizz.title}
                   icon={quizz.icon}

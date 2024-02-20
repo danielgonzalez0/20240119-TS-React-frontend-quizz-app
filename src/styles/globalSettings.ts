@@ -34,6 +34,7 @@ export const theme = {
       fontFamily: 'Rubik-Regular, sans-serif',
       fontSize: '64px',
       lineHeight: '100%',
+      fontWeight: '300',
     },
     headingM: {
       fontFamily: 'Rubik-Medium, sans-serif',
@@ -52,8 +53,9 @@ export const theme = {
     },
     bodyS: {
       fontFamily: 'Rubik-Italic, sans-serif',
-      fontSize: '12px',
+      fontSize: '20px',
       lineHeight: '150%',
+      fontWeight: '400',
     },
   },
 };

@@ -5,7 +5,7 @@ interface QuizzListProps {
 }
 
 export const ListContainer = styled.ul`
-  width: 50%;
+  flex: 0 0 45%;
   display: flex;
   gap: 20px;
   flex-direction: column;
@@ -51,6 +51,12 @@ a{
       object-fit: cover;
     }
   }
+  &:hover, &:focus{ 
+    background-color: ${({ $darkMode, theme }) => $darkMode && theme.colors.quaternary};
+    outline: solid 2px ${({ $darkMode, theme }) => $darkMode ? theme.colors.quinary : theme.colors.quaternary};
+  }
+
+
 
   @media screen and (max-width: ${({ theme }) => theme.size.smallmobile}) {
     gap: 16px;
