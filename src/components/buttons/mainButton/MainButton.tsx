@@ -37,6 +37,9 @@ const Button = styled.button<{ $darkMode: boolean }>`
 
   @media screen and (max-width: ${({ theme }) => theme.size.smallmobile}) {
     height: 56px;
+    font-size: 18px;
+    line-height: 18px;
+    border-radius: 12px;
   }
 `;
 

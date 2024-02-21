@@ -20,3 +20,13 @@ export const CustomLink = styled(Link)`
   font-size: ${(props) => props.theme.typography.headingS.fontSize};
   color: ${(props) => props.theme.colors.primary};
 `;
+
+export const AnswerContainer = styled.div`
+  flex: 0 0 50%;
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+`;

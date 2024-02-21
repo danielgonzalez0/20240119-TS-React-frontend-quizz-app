@@ -16,8 +16,6 @@ export const ListContainer = styled.ul`
 `;
 
 
-
-
 export const IconTitle = styled.p`
   font-family: ${({theme}) => theme.typography.headingS.fontFamily};
   font-size: ${({theme}) => theme.typography.headingS.fontSize};
@@ -35,7 +33,9 @@ export const QuizzListContainer = styled.li<QuizzListProps>`
     width: 100%;
     padding: 18px 20px;
     border-radius: 24px;
-    box-shadow: 0px 16px 40px 0px #8fa0c124;
+    box-shadow: 0px 16px 40px 0px
+      ${({ $darkMode }) => ($darkMode ? '#313e51' : '#8fa0c124')};
+
     background-color: ${({ $darkMode, theme }) =>
       $darkMode ? theme.colors.tertiary : theme.colors.septenary};
     display: flex;
