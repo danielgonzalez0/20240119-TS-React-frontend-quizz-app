@@ -2,27 +2,19 @@ import React from 'react';
 import QuizzList from './quizzList/QuizzList';
 import Header from '../../components/header/Header';
 import Title from './title/Title';
-import styled from 'styled-components';
+import { Main } from '../../styles/globalSettings';
 
-const HomeContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
 
-  @media screen and (max-width: ${({ theme }) => theme.size.tablet}) {
-    flex-direction: column;
-    gap: 40px;
-  }
-`;
+
 
 const Home: React.FC = () => {
   return (
     <>
       <Header />
-      <HomeContainer>
+      <Main>
         <Title />
         <QuizzList />
-      </HomeContainer>
+      </Main>
     </>
   );
 };

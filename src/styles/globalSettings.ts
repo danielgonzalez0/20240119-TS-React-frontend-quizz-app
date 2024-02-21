@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import styled from 'styled-components';
 
 export const theme = {
   size: {
@@ -17,6 +18,7 @@ export const theme = {
     septenary: '#ffffff',
     octonary: '#26d782',
     nonary: '#ee5454',
+    denary: ' #D394fa',
     // Ajoutez d'autres couleurs ici
   },
   typography: {
@@ -141,4 +143,16 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
     list-style: none;
   }
   // Ajoutez d'autres styles globaux ici
+`;
+
+
+export const Main = styled.main`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: ${({ theme }) => theme.size.tablet}) {
+    flex-direction: column;
+    gap: 40px;
+  }
 `;
