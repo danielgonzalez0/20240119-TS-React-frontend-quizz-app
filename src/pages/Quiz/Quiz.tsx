@@ -15,7 +15,6 @@ interface QuestionType {
   answer: string;
 }
 
-
 const Quiz: React.FC = () => {
   //variables
   const { quizId } = useParams<{ quizId?: string }>();
@@ -25,7 +24,13 @@ const Quiz: React.FC = () => {
   const [questions, setQuestions] = React.useState<QuestionType[] | null>(null);
 
   const handleNextQuestion = () => {
-    setCurrentQuestion((prev) => (prev !== null ? prev + 1 : null));
+
+    setCurrentQuestion((prev: number | null) => {
+      if (questions === null) return null;
+      if (prev === null || prev === undefined) return null;
+      if (prev < questions.length - 1) return prev + 1;
+      return prev;
+    });
   };
 
   //data fetching
@@ -36,7 +41,7 @@ const Quiz: React.FC = () => {
   useEffect(() => {
     if (data) {
       setCurrentQuestion(0);
-      setQuestions(data.quiz.questions);  
+      setQuestions(data.quiz.questions);
     }
   }, [data]);
 
@@ -63,7 +68,7 @@ const Quiz: React.FC = () => {
         <Main>
           {}
           <Question
-            question={questions[currentQuestion].question} 
+            question={questions[currentQuestion].question}
             length={questions.length}
             index={currentQuestion}
           />
