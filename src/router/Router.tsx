@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import Home from '../pages/Home/Home';
 import Quiz from '../pages/Quiz/Quiz';
 
+
 const AppRouter: React.FC = () => {
   const darkMode = useAppSelector((state: RootState) => state.darkMode);
   return (

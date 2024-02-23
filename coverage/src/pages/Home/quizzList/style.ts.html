@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>65/65</span>
+                <span class='fraction'>74/74</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/4</span>
+                <span class='fraction'>6/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">57.14% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>4/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>65/65</span>
+                <span class='fraction'>74/74</span>
             </div>
         
             
@@ -128,7 +128,25 @@
 <a name='L63'></a><a href='#L63'>63</a>
 <a name='L64'></a><a href='#L64'>64</a>
 <a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -200,7 +218,7 @@ interface QuizzListProps {
 }
 &nbsp;
 export const ListContainer = styled.ul`
-  width: 50%;
+  flex: 0 0 45%;
   display: flex;
   gap: 20px;
   flex-direction: column;
@@ -209,8 +227,6 @@ export const ListContainer = styled.ul`
     width: 100%;
   }
 `;
-&nbsp;
-&nbsp;
 &nbsp;
 &nbsp;
 export const IconTitle = styled.p`
@@ -226,37 +242,48 @@ export const IconTitle = styled.p`
 `;
 &nbsp;
 export const QuizzListContainer = styled.li&lt;QuizzListProps&gt;`
-a{
-  width: 100%;
-  padding: 18px 20px;
-  border-radius: 24px;
-  background-color: ${({ $darkMode, theme }) =&gt;
-<span class="branch-0 cbranch-no" title="branch not covered" >    $darkMode ? theme.colors.tertiary : t</span>heme.colors.septenary};
-  display: flex;
-  gap: 32px;
+  a {
+    width: 100%;
+    padding: 18px 20px;
+    border-radius: 24px;
+    box-shadow: 0px 16px 40px 0px
+      ${({ $darkMode }) =&gt; (<span class="branch-0 cbranch-no" title="branch not covered" >$darkMode ? '#313e51' : '</span>#8fa0c124')};
 &nbsp;
-  .icon-container {
-    width: 56px;
-    height: 56px;
-    padding: 8px;
-    border-radius: 12px;
-    img {
-      width: 100%;
-      height: auto;
-      object-fit: cover;
-    }
-  }
+    background-color: ${({ $darkMode, theme }) =&gt;
+<span class="branch-0 cbranch-no" title="branch not covered" >      $darkMode ? theme.colors.tertiary : t</span>heme.colors.septenary};
+    display: flex;
+    gap: 32px;
 &nbsp;
-  @media screen and (max-width: ${({ theme }) =&gt; theme.size.smallmobile}) {
-    gap: 16px;
-    border-radius: 12px;
     .icon-container {
-      width: 40px;
-      height: 40px;
-      padding: 6px;
+      width: 56px;
+      height: 56px;
+      padding: 8px;
+      border-radius: 12px;
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+    &amp;:hover,
+    &amp;:focus {
+      background-color: ${({ $darkMode, theme }) =&gt;
+<span class="branch-0 cbranch-no" title="branch not covered" >        $darkMode &amp;&amp; theme.colors.quaternary}</span>;
+      outline: solid 2px
+        ${({ $darkMode, theme }) =&gt;
+<span class="branch-0 cbranch-no" title="branch not covered" >          $darkMode ? theme.colors.quinary : t</span>heme.colors.quaternary};
+    }
+&nbsp;
+    @media screen and (max-width: ${({ theme }) =&gt; theme.size.smallmobile}) {
+      gap: 16px;
+      border-radius: 12px;
+      .icon-container {
+        width: 40px;
+        height: 40px;
+        padding: 6px;
+      }
     }
   }
-}
 `;
 &nbsp;</pre></td></tr></table></pre>
 
@@ -265,7 +292,7 @@ a{
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-20T15:08:54.013Z
+                at 2024-02-23T21:43:22.667Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

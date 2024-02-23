@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../hooks/reduxTypedHooks';
 import { RootState } from '../../../redux/store';
 
 interface Props {
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   children: React.ReactNode;
 }
 
@@ -37,6 +37,9 @@ const Button = styled.button<{ $darkMode: boolean }>`
 
   @media screen and (max-width: ${({ theme }) => theme.size.smallmobile}) {
     height: 56px;
+    font-size: 18px;
+    line-height: 18px;
+    border-radius: 12px;
   }
 `;
 
