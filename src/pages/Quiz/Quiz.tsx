@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { GET_QUIZ } from '../../graphql/queries';
 import { AnswerContainer, CustomLink, ErrorMessage, Title } from './style';
 import Header from '../../components/header/Header';
@@ -9,7 +9,7 @@ import MainButton from '../../components/buttons/mainButton/MainButton';
 import Question from './question/Question';
 import SelectionElement from '../../components/list/SelectionElement';
 import errorIcon from '../../assets/images/icon-error.svg';
-import { useAppSelector } from '../../hooks/reduxTypedHooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxTypedHooks';
 import { RootState } from '../../redux/store';
 
 interface QuestionType {
@@ -28,60 +28,86 @@ const Quiz: React.FC = () => {
 
   //states declaration
   const darkMode = useAppSelector((state: RootState) => state.darkMode);
-  const [currentQuestion, setCurrentQuestion] = useState<number | null>(null);
   const [questions, setQuestions] = useState<QuestionType[] | null>(null);
   const [options, setOptions] = useState<string[]>([]);
   const [answer, setAnswer] = useState<string>('');
-  // const [score, setScore] = React.useState<number>(0);
+  const [score, setScore] = React.useState<number>(0);
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
 
+  //hooks
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  // const scoreState = useAppSelector((state: RootState) => state.quiz.score);
+  const currentQuestionState = useAppSelector(
+    (state: RootState) => state.quiz.currentQuestion
+  );
+  const quizInfos = useAppSelector((state: RootState) => state.quiz);
+
   //functions
   const handleNextQuestion = async () => {
+    if (currentQuestionState === (questions?.length ?? 0) - 1) {
+      navigate('/result');
+      return;
+    }
+
     await nextQuestion();
     await nextOptions();
     await getAnswer();
     setIsAnswered(false);
     setSelectedOption('');
+    console.log({ score });
   };
 
   const nextQuestion = async () => {
-    setCurrentQuestion((prev: number | null) => {
-      if (questions === null) return null;
-      if (prev === null || prev === undefined) return null;
-      if (prev < questions.length - 1) {
-        const next = prev + 1;
-        return next;
-      }
-      return prev;
+    if (questions === null) return;
+
+    let newIndex: number;
+
+    if (currentQuestionState < questions.length - 1) {
+      console.log('currentQuestionState', currentQuestionState);
+      console.log('questions.length', questions.length);
+
+      newIndex = currentQuestionState + 1;
+    } else {
+      console.log('idenx 0');
+
+      newIndex = 0;
+    }
+
+    dispatch({
+      type: 'quiz/setCurrentQuestion',
+      payload: newIndex,
     });
   };
 
   const nextOptions = async () => {
     if (questions === null) return null;
-    if (currentQuestion === null) return null;
-    setOptions(questions[currentQuestion + 1].options);
+    if (currentQuestionState === null) return null;
+    setOptions(questions[currentQuestionState + 1].options);
   };
 
   const handleOptionClick = (option: string) => {
     if (isAnswered && selectedOption) return;
+    setIsAnswered(false);
     setSelectedOption(option);
   };
 
   const getAnswer = async () => {
     if (questions === null) return null;
-    if (currentQuestion === null) return null;
-    const answer = questions[currentQuestion + 1].answer;
+    if (currentQuestionState === null) return null;
+    const answer = questions[currentQuestionState + 1].answer;
     setAnswer(answer);
   };
 
   const handleSubmitAnswer = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsAnswered(true);
-
-    if (!selectedOption) return;
-
-    // const answerToCheck = selectedOption;
+    if (!selectedOption) {
+      return;
+    }
+    const answerToCheck = selectedOption;
+    if (answerToCheck === answer) setScore(score + 1);
   };
 
   const handleClassName = (option: string) => {
@@ -97,12 +123,24 @@ const Quiz: React.FC = () => {
   //useEffect
   useEffect(() => {
     if (data && data.quiz) {
-      setCurrentQuestion(0);
+      // setCurrentQuestion(0);
       setQuestions(data.quiz.questions);
       setOptions(data.quiz.questions[0].options);
       setAnswer(data.quiz.questions[0].answer);
+      dispatch({
+        type: 'quiz/setQuizInfos',
+        payload: {
+          id: data.quiz.id,
+          title: data.quiz.title,
+          icon: data.quiz.icon,
+        },
+      });
+      if (quizInfos.id !== Number(quizId)) {
+        dispatch({ type: 'quiz/setScore', payload: 0 });
+        dispatch({ type: 'quiz/setCurrentQuestion', payload: 0 });
+      }
     }
-  }, [data]);
+  }, [data, quizId, quizInfos.id, dispatch]);
 
   //rendering
   if (loading) return <Title>Loading...</Title>;
@@ -117,7 +155,12 @@ const Quiz: React.FC = () => {
       </Title>
     );
 
-  if (data && questions && questions.length > 0 && currentQuestion !== null) {
+  if (
+    data &&
+    questions &&
+    questions.length > 0 &&
+    currentQuestionState !== null
+  ) {
     return (
       <>
         <Header
@@ -127,9 +170,9 @@ const Quiz: React.FC = () => {
         />
         <Main>
           <Question
-            question={questions[currentQuestion].question}
+            question={questions[currentQuestionState].question}
             length={questions.length}
-            index={currentQuestion}
+            index={currentQuestionState}
           />
           <AnswerContainer>
             <ul>
