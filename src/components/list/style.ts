@@ -64,6 +64,13 @@ export const ListContainer = styled.li<Props>`
     background-color: ${({ theme }) => theme.colors.primary};
   }
 
+  &.correctAnswer {
+    outline: 3px solid ${({ theme }) => theme.colors.octonary};
+  }
+  &.wrongAnswer {
+    outline: 3px solid ${({ theme }) => theme.colors.nonary};
+  }
+
   @media screen and (max-width: ${({ theme }) => theme.size.smallmobile}) {
     gap: 16px;
     font-size: 18px;

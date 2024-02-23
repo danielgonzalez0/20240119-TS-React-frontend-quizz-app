@@ -49,7 +49,10 @@ const Quiz: React.FC = () => {
     setCurrentQuestion((prev: number | null) => {
       if (questions === null) return null;
       if (prev === null || prev === undefined) return null;
-      if (prev < questions.length - 1) return prev + 1;
+      if (prev < questions.length - 1) {
+        const next = prev + 1;
+        return next;
+      }
       return prev;
     });
   };
@@ -61,31 +64,33 @@ const Quiz: React.FC = () => {
   };
 
   const handleOptionClick = (option: string) => {
-    setIsAnswered(false);
+    if (isAnswered && selectedOption) return;
     setSelectedOption(option);
   };
 
   const getAnswer = async () => {
     if (questions === null) return null;
     if (currentQuestion === null) return null;
-    const answer = questions[currentQuestion].answer;
+    const answer = questions[currentQuestion + 1].answer;
     setAnswer(answer);
   };
 
-  const handleSubmitAnswer = async () => {
+  const handleSubmitAnswer = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     setIsAnswered(true);
-    if (!selectedOption) return null;
 
-    const answerToCheck = selectedOption;
+    if (!selectedOption) return;
+
+    // const answerToCheck = selectedOption;
   };
 
   const handleClassName = (option: string) => {
     if (isAnswered === false) return option === selectedOption ? 'active' : '';
-    if (option === selectedOption && selectedOption === answer)
+    if (isAnswered && option === selectedOption && selectedOption === answer)
       return 'correctAnswer';
-    if (option === selectedOption && selectedOption !== answer)
+    if (isAnswered && option === selectedOption && selectedOption !== answer)
       return 'wrongAnswer';
-    if (option === answer) return 'correct';
+    if (isAnswered && option === answer && selectedOption) return 'correct';
     return '';
   };
 
@@ -134,16 +139,21 @@ const Quiz: React.FC = () => {
                   option={option}
                   index={index}
                   onClick={() => handleOptionClick(option)}
+                  onKeyDown={(e?: React.KeyboardEvent<HTMLLIElement>) => {
+                    if (e && e.key === 'Enter') handleOptionClick(option);
+                  }}
                   className={handleClassName(option)}
                 />
               ))}
             </ul>
             {isAnswered && selectedOption && (
-              <MainButton onClick={handleNextQuestion}>Next Question</MainButton>
+              <MainButton onClick={handleNextQuestion}>
+                Next Question
+              </MainButton>
             )}
 
-            {(!isAnswered || (isAnswered && selectedOption === "")) && (
-              <MainButton onClick={handleSubmitAnswer}>
+            {(!isAnswered || (isAnswered && selectedOption === '')) && (
+              <MainButton onClick={(e) => handleSubmitAnswer(e)}>
                 Submit Answer
               </MainButton>
             )}

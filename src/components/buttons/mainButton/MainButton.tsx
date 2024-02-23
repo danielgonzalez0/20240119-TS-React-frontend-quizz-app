@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../hooks/reduxTypedHooks';
 import { RootState } from '../../../redux/store';
 
 interface Props {
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   children: React.ReactNode;
 }
 
