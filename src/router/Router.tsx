@@ -5,7 +5,7 @@ import { RootState } from '../redux/store';
 import { ThemeProvider } from 'styled-components';
 import Home from '../pages/Home/Home';
 import Quiz from '../pages/Quiz/Quiz';
-import Result from '../pages/Result/Result';
+
 
 const AppRouter: React.FC = () => {
   const darkMode = useAppSelector((state: RootState) => state.darkMode);
@@ -17,7 +17,6 @@ const AppRouter: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Home />} />
           <Route path="/quiz/:quizId" element={<Quiz />} />
-          <Route path='/result' element={<Result/>}/>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

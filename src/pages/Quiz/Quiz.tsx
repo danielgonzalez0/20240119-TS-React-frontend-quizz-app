@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { GET_QUIZ } from '../../graphql/queries';
 import { AnswerContainer, CustomLink, ErrorMessage, Title } from './style';
 import Header from '../../components/header/Header';
@@ -11,6 +11,7 @@ import SelectionElement from '../../components/list/SelectionElement';
 import errorIcon from '../../assets/images/icon-error.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxTypedHooks';
 import { RootState } from '../../redux/store';
+import Result from './result/Result';
 
 interface QuestionType {
   __typename: string;
@@ -28,53 +29,41 @@ const Quiz: React.FC = () => {
 
   //states declaration
   const darkMode = useAppSelector((state: RootState) => state.darkMode);
-  const [questions, setQuestions] = useState<QuestionType[] | null>(null);
+  const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [options, setOptions] = useState<string[]>([]);
   const [answer, setAnswer] = useState<string>('');
-  const [score, setScore] = React.useState<number>(0);
   const [selectedOption, setSelectedOption] = useState<string>('');
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
 
   //hooks
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  // const scoreState = useAppSelector((state: RootState) => state.quiz.score);
+  const scoreState = useAppSelector((state: RootState) => state.quiz.score);
   const currentQuestionState = useAppSelector(
     (state: RootState) => state.quiz.currentQuestion
   );
   const quizInfos = useAppSelector((state: RootState) => state.quiz);
+  const isFinisehdState = useAppSelector(
+    (state: RootState) => state.quiz.isFinished
+  );
 
   //functions
   const handleNextQuestion = async () => {
-    if (currentQuestionState === (questions?.length ?? 0) - 1) {
-      navigate('/result');
-      return;
-    }
-
     await nextQuestion();
     await nextOptions();
     await getAnswer();
     setIsAnswered(false);
     setSelectedOption('');
-    console.log({ score });
   };
 
   const nextQuestion = async () => {
-    if (questions === null) return;
-
     let newIndex: number;
 
     if (currentQuestionState < questions.length - 1) {
-      console.log('currentQuestionState', currentQuestionState);
-      console.log('questions.length', questions.length);
-
       newIndex = currentQuestionState + 1;
     } else {
-      console.log('idenx 0');
-
-      newIndex = 0;
+      newIndex = currentQuestionState;
+      dispatch({ type: 'quiz/setIsFinished', payload: true });
     }
-
     dispatch({
       type: 'quiz/setCurrentQuestion',
       payload: newIndex,
@@ -82,8 +71,7 @@ const Quiz: React.FC = () => {
   };
 
   const nextOptions = async () => {
-    if (questions === null) return null;
-    if (currentQuestionState === null) return null;
+    if (currentQuestionState + 1 === questions.length) return;
     setOptions(questions[currentQuestionState + 1].options);
   };
 
@@ -94,8 +82,7 @@ const Quiz: React.FC = () => {
   };
 
   const getAnswer = async () => {
-    if (questions === null) return null;
-    if (currentQuestionState === null) return null;
+    if (currentQuestionState + 1 === questions.length) return;
     const answer = questions[currentQuestionState + 1].answer;
     setAnswer(answer);
   };
@@ -107,7 +94,8 @@ const Quiz: React.FC = () => {
       return;
     }
     const answerToCheck = selectedOption;
-    if (answerToCheck === answer) setScore(score + 1);
+    if (answerToCheck === answer)
+      dispatch({ type: 'quiz/setScore', payload: scoreState + 1 });
   };
 
   const handleClassName = (option: string) => {
@@ -123,10 +111,15 @@ const Quiz: React.FC = () => {
   //useEffect
   useEffect(() => {
     if (data && data.quiz) {
-      // setCurrentQuestion(0);
+      if (Number(quizInfos.id) !== Number(quizId)) {
+        dispatch({ type: 'quiz/setScore', payload: 0 });
+        dispatch({ type: 'quiz/setCurrentQuestion', payload: 0 });
+        dispatch({type: 'quiz/setIsFinished', payload: false})
+       
+      }
       setQuestions(data.quiz.questions);
-      setOptions(data.quiz.questions[0].options);
-      setAnswer(data.quiz.questions[0].answer);
+      setOptions(data.quiz.questions[currentQuestionState].options);
+      setAnswer(data.quiz.questions[currentQuestionState].answer);
       dispatch({
         type: 'quiz/setQuizInfos',
         payload: {
@@ -135,12 +128,8 @@ const Quiz: React.FC = () => {
           icon: data.quiz.icon,
         },
       });
-      if (quizInfos.id !== Number(quizId)) {
-        dispatch({ type: 'quiz/setScore', payload: 0 });
-        dispatch({ type: 'quiz/setCurrentQuestion', payload: 0 });
-      }
     }
-  }, [data, quizId, quizInfos.id, dispatch]);
+  }, [data, quizId, quizInfos.id, dispatch, currentQuestionState]);
 
   //rendering
   if (loading) return <Title>Loading...</Title>;
@@ -169,44 +158,56 @@ const Quiz: React.FC = () => {
           color={data.quiz.color}
         />
         <Main>
-          <Question
-            question={questions[currentQuestionState].question}
-            length={questions.length}
-            index={currentQuestionState}
-          />
-          <AnswerContainer>
-            <ul>
-              {options.map((option, index) => (
-                <SelectionElement
-                  key={index}
-                  option={option}
-                  index={index}
-                  onClick={() => handleOptionClick(option)}
-                  onKeyDown={(e?: React.KeyboardEvent<HTMLLIElement>) => {
-                    if (e && e.key === 'Enter') handleOptionClick(option);
-                  }}
-                  className={handleClassName(option)}
-                />
-              ))}
-            </ul>
-            {isAnswered && selectedOption && (
-              <MainButton onClick={handleNextQuestion}>
-                Next Question
-              </MainButton>
-            )}
+          {isFinisehdState ? (
+            <Result
+              title={data.quiz.title}
+              icon={data.quiz.icon}
+              color={data.quiz.color}
+              score={scoreState}
+              length={questions.length}
+            />
+          ) : (
+            <>
+              <Question
+                question={questions[currentQuestionState].question}
+                length={questions.length}
+                index={currentQuestionState}
+              />
+              <AnswerContainer>
+                <ul>
+                  {options.map((option, index) => (
+                    <SelectionElement
+                      key={index}
+                      option={option}
+                      index={index}
+                      onClick={() => handleOptionClick(option)}
+                      onKeyDown={(e?: React.KeyboardEvent<HTMLLIElement>) => {
+                        if (e && e.key === 'Enter') handleOptionClick(option);
+                      }}
+                      className={isAnswered ? handleClassName(option) : ''}
+                    />
+                  ))}
+                </ul>
+                {isAnswered && selectedOption && (
+                  <MainButton onClick={handleNextQuestion}>
+                    Next Question
+                  </MainButton>
+                )}
 
-            {(!isAnswered || (isAnswered && selectedOption === '')) && (
-              <MainButton onClick={(e) => handleSubmitAnswer(e)}>
-                Submit Answer
-              </MainButton>
-            )}
-            {isAnswered && selectedOption === '' && (
-              <ErrorMessage $darkMode={darkMode}>
-                <img src={errorIcon} alt="error icon" />
-                <span>Please select an answer</span>
-              </ErrorMessage>
-            )}
-          </AnswerContainer>
+                {(!isAnswered || (isAnswered && selectedOption === '')) && (
+                  <MainButton onClick={(e) => handleSubmitAnswer(e)}>
+                    Submit Answer
+                  </MainButton>
+                )}
+                {isAnswered && selectedOption === '' && (
+                  <ErrorMessage $darkMode={darkMode}>
+                    <img src={errorIcon} alt="error icon" />
+                    <span>Please select an answer</span>
+                  </ErrorMessage>
+                )}
+              </AnswerContainer>
+            </>
+          )}
         </Main>
       </>
     );
