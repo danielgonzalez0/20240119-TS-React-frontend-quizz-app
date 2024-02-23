@@ -29,14 +29,17 @@ interface Props {
   option: string;
   index: number;
   onClick: () => void;
-  className?: string; }
+  onKeyDown?: (e?: React.KeyboardEvent<HTMLLIElement>) => void;
+  className?: string;
+}
 
-const SelectionElement: React.FC<Props> = ({ option, index, onClick, className}) => {
+const SelectionElement: React.FC<Props> = ({ option, index, onClick, onKeyDown, className}) => {
   const darkMode = useAppSelector((state: RootState) => state.darkMode);
   return (
     <ListContainer
       $darkMode={darkMode}
       onClick={onClick}
+      onKeyDown={onKeyDown}
       tabIndex={0}
       className={className}
     >
@@ -45,7 +48,7 @@ const SelectionElement: React.FC<Props> = ({ option, index, onClick, className})
       {(className === 'correctAnswer' || className === 'correct') && (
         <ListIconAnswer src={correctIcon} alt="correct icon" />
       )}
-      {className === 'wrong' && (
+      {className === 'wrongAnswer' && (
         <ListIconAnswer src={wrongIcon} alt="wrong icon" />
       )}
 

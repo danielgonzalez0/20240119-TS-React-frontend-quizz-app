@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/pages/Home/title/style.ts</title>
+    <title>Code coverage report for src/pages/Quiz/result/style.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../../prettify.css" />
     <link rel="stylesheet" href="../../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/pages/Home/title</a> style.ts</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/pages/Quiz/result</a> style.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/50</span>
+                <span class='fraction'>0/53</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/50</span>
+                <span class='fraction'>0/53</span>
             </div>
         
             
@@ -112,7 +112,11 @@
 <a name='L47'></a><a href='#L47'>47</a>
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -161,56 +165,64 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import styled from 'styled-components';</span></span></span>
-<span class="cstat-no" title="statement not covered" ></span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import styled from 'styled-components';</span></span></span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >interface Props {</span>
 <span class="cstat-no" title="statement not covered" >  $darkMode: boolean;</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export const TitleContainer = styled.div&lt;Props&gt;`</span>
-<span class="cstat-no" title="statement not covered" >  flex: 0 0 55%;</span>
-<span class="cstat-no" title="statement not covered" >  p {</span>
-<span class="cstat-no" title="statement not covered" >    font-family: ${({ theme }) =&gt; theme.typography.headingLRegular.fontFamily};</span>
-<span class="cstat-no" title="statement not covered" >    font-size: ${({ theme }) =&gt; theme.typography.headingLRegular.fontSize};</span>
-<span class="cstat-no" title="statement not covered" >    line-height: ${({ theme }) =&gt; theme.typography.headingLRegular.lineHeight};</span>
-<span class="cstat-no" title="statement not covered" >    font-weight: ${({ theme }) =&gt; theme.typography.headingLRegular.fontWeight};</span>
+<span class="cstat-no" title="statement not covered" >export const ResultContainer = styled.div`</span>
+<span class="cstat-no" title="statement not covered" >  flex: 0 0 45%;</span>
+<span class="cstat-no" title="statement not covered" >  display: flex;</span>
+<span class="cstat-no" title="statement not covered" >  flex-direction: column;</span>
+<span class="cstat-no" title="statement not covered" >  align-content: center;</span>
+<span class="cstat-no" title="statement not covered" >  justify-content: center;</span>
+<span class="cstat-no" title="statement not covered" >`;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export const ScoreContainer = styled.div&lt;Props&gt;`</span>
+<span class="cstat-no" title="statement not covered" >  display: flex;</span>
+<span class="cstat-no" title="statement not covered" >  flex-direction: column;</span>
+<span class="cstat-no" title="statement not covered" >  align-items: center;</span>
+<span class="cstat-no" title="statement not covered" >  justify-content: center;</span>
+<span class="cstat-no" title="statement not covered" >  padding: 18px 20px;</span>
+<span class="cstat-no" title="statement not covered" >  border-radius: 24px;</span>
+<span class="cstat-no" title="statement not covered" >  margin-bottom: 40px;</span>
+<span class="cstat-no" title="statement not covered" >  background-color: ${({ $darkMode, theme }) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >    $darkMode ? theme.colors.tertiary : theme.colors.septenary};</span>
+<span class="cstat-no" title="statement not covered" >  box-shadow: 0px 16px 40px 0px</span>
+<span class="cstat-no" title="statement not covered" >    ${({ $darkMode }) =&gt; ($darkMode ? '#313e51' : '#8fa0c124')};</span>
+<span class="cstat-no" title="statement not covered" >  h2 {</span>
+<span class="cstat-no" title="statement not covered" >    margin: 40px 0 20px;</span>
+<span class="cstat-no" title="statement not covered" >    font-family: ${({ theme }) =&gt; theme.typography.display.fontFamily};</span>
+<span class="cstat-no" title="statement not covered" >    font-size: ${({ theme }) =&gt; theme.typography.display.fontSize};</span>
+<span class="cstat-no" title="statement not covered" >    line-height: ${({ theme }) =&gt; theme.typography.display.lineHeight};</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >  h1 {</span>
-<span class="cstat-no" title="statement not covered" >    font-family: ${({ theme }) =&gt; theme.typography.headingL.fontFamily};</span>
-<span class="cstat-no" title="statement not covered" >    font-size: ${({ theme }) =&gt; theme.typography.headingL.fontSize};</span>
-<span class="cstat-no" title="statement not covered" >    line-height: ${({ theme }) =&gt; theme.typography.headingL.lineHeight};</span>
-<span class="cstat-no" title="statement not covered" >    margin-bottom: 40px;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >  span {</span>
-<span class="cstat-no" title="statement not covered" >    font-family: ${({ theme }) =&gt; theme.typography.bodyS.fontFamily};</span>
-<span class="cstat-no" title="statement not covered" >    font-size: ${({ theme }) =&gt; theme.typography.bodyS.fontSize};</span>
-<span class="cstat-no" title="statement not covered" >    line-height: ${({ theme }) =&gt; theme.typography.bodyS.lineHeight};</span>
-<span class="cstat-no" title="statement not covered" >    color: ${({ $darkMode, theme }) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >    font-family: ${({ theme }) =&gt; theme.typography.bodyM.fontFamily};</span>
+<span class="cstat-no" title="statement not covered" >    font-size: ${({ theme }) =&gt; theme.typography.bodyM.fontSize};</span>
+<span class="cstat-no" title="statement not covered" >    line-height: ${({ theme }) =&gt; theme.typography.bodyM.lineHeight};</span>
+<span class="cstat-no" title="statement not covered" >    color: ${({ theme, $darkMode }) =&gt;</span>
 <span class="cstat-no" title="statement not covered" >      $darkMode ? theme.colors.quinary : theme.colors.quaternary};</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  @media screen and (max-width: ${({ theme }) =&gt; theme.size.tablet}) {</span>
-<span class="cstat-no" title="statement not covered" >    h1 {</span>
-<span class="cstat-no" title="statement not covered" >      margin-bottom: 10px;</span>
+<span class="cstat-no" title="statement not covered" >  @media screen and (max-width: ${({ theme }) =&gt; theme.size.smallmobile}) {</span>
+<span class="cstat-no" title="statement not covered" >    border-radius: 12px;</span>
+<span class="cstat-no" title="statement not covered" >    h2 {</span>
+<span class="cstat-no" title="statement not covered" >      font-size: 88px;</span>
+<span class="cstat-no" title="statement not covered" >      line-height: 88px;</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    @media screen and (max-width: 575px) {</span>
-<span class="cstat-no" title="statement not covered" >      p {</span>
-<span class="cstat-no" title="statement not covered" >        font-size: 40px;</span>
-<span class="cstat-no" title="statement not covered" >        line-height: 40px;</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" >      h1 {</span>
-<span class="cstat-no" title="statement not covered" >        font-size: 40px;</span>
-<span class="cstat-no" title="statement not covered" >        line-height: 40px;</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
-<span class="cstat-no" title="statement not covered" >      span {</span>
-<span class="cstat-no" title="statement not covered" >        font-size: 14px;</span>
-<span class="cstat-no" title="statement not covered" >        line-height: 21px;</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
+<span class="cstat-no" title="statement not covered" >    span {</span>
+<span class="cstat-no" title="statement not covered" >      font-size: 18px;</span>
+<span class="cstat-no" title="statement not covered" >      line-height: 18px;</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >`;</span></pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >`;</span>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
