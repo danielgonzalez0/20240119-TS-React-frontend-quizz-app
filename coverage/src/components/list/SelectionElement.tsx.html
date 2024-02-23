@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/pages/Quiz/style.ts</title>
+    <title>Code coverage report for src/components/list/SelectionElement.tsx</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/pages/Quiz</a> style.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/components/list</a> SelectionElement.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/32</span>
+                <span class='fraction'>0/35</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/32</span>
+                <span class='fraction'>0/35</span>
             </div>
         
             
@@ -95,7 +95,10 @@
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -127,38 +130,44 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { Link } from 'react-router-dom';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import styled from 'styled-components';</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import React from 'react';</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { ListContainer, ListTitle, ListIcon } from './style';</span>
+<span class="cstat-no" title="statement not covered" >import { RootState } from '../../redux/store';</span>
+<span class="cstat-no" title="statement not covered" >import { useAppSelector } from '../../hooks/reduxTypedHooks';</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export const Title = styled.h1`</span>
-<span class="cstat-no" title="statement not covered" >  font-family: ${(props) =&gt; props.theme.typography.headingM.fontFamily};</span>
-<span class="cstat-no" title="statement not covered" >  font-size: ${(props) =&gt; props.theme.typography.headingM.fontSize};</span>
-<span class="cstat-no" title="statement not covered" >  line-height: ${(props) =&gt; props.theme.typography.headingM.lineHeight};</span>
-<span class="cstat-no" title="statement not covered" >  display: flex;</span>
-<span class="cstat-no" title="statement not covered" >  flex-direction: column;</span>
-<span class="cstat-no" title="statement not covered" >  gap: 40px;</span>
-<span class="cstat-no" title="statement not covered" >  align-items: center;</span>
-<span class="cstat-no" title="statement not covered" >  margin: 0 20px;</span>
-<span class="cstat-no" title="statement not covered" >  justify-content: center;</span>
-<span class="cstat-no" title="statement not covered" >  max-width: 100vw;</span>
-<span class="cstat-no" title="statement not covered" >  height: 80vh;</span>
-<span class="cstat-no" title="statement not covered" >  text-align: center;</span>
-<span class="cstat-no" title="statement not covered" >`;</span>
+<span class="cstat-no" title="statement not covered" >interface Props {</span>
+<span class="cstat-no" title="statement not covered" >  option: string;</span>
+<span class="cstat-no" title="statement not covered" >  index: number;</span>
+<span class="cstat-no" title="statement not covered" >  onClick: () =&gt; void;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export const CustomLink = styled(Link)`</span>
-<span class="cstat-no" title="statement not covered" >  font-size: ${(props) =&gt; props.theme.typography.headingS.fontSize};</span>
-<span class="cstat-no" title="statement not covered" >  color: ${(props) =&gt; props.theme.colors.primary};</span>
-<span class="cstat-no" title="statement not covered" >`;</span>
+<span class="cstat-no" title="statement not covered" >const choicesTitle: string[] = [</span>
+<span class="cstat-no" title="statement not covered" >  'A',</span>
+<span class="cstat-no" title="statement not covered" >  'B',</span>
+<span class="cstat-no" title="statement not covered" >  'C',</span>
+<span class="cstat-no" title="statement not covered" >  'D',</span>
+<span class="cstat-no" title="statement not covered" >  'E',</span>
+<span class="cstat-no" title="statement not covered" >  'F',</span>
+<span class="cstat-no" title="statement not covered" >  'G',</span>
+<span class="cstat-no" title="statement not covered" >  'H',</span>
+<span class="cstat-no" title="statement not covered" >  'I',</span>
+<span class="cstat-no" title="statement not covered" >  'J',</span>
+<span class="cstat-no" title="statement not covered" >];</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export const AnswerContainer = styled.div`</span>
-<span class="cstat-no" title="statement not covered" >  flex: 0 0 50%;</span>
-<span class="cstat-no" title="statement not covered" >  ul {</span>
-<span class="cstat-no" title="statement not covered" >    display: flex;</span>
-<span class="cstat-no" title="statement not covered" >    flex-direction: column;</span>
-<span class="cstat-no" title="statement not covered" >    gap: 20px;</span>
-<span class="cstat-no" title="statement not covered" >    margin-bottom: 30px;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >`;</span>
+<span class="cstat-no" title="statement not covered" >const SelectionElement: React.FC&lt;Props&gt; = ({ option, index, onClick }) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  const darkMode = useAppSelector((state: RootState) =&gt; state.darkMode);</span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;ListContainer $darkMode={darkMode} onClick={onClick} tabIndex={0}&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;ListIcon&gt;{choicesTitle[index]}&lt;/ListIcon&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;ListTitle $darkMode={darkMode}&gt;{option}&lt;/ListTitle&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/ListContainer&gt;</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
+<span class="cstat-no" title="statement not covered" >};</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export default SelectionElement;</span>
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->

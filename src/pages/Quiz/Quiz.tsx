@@ -1,13 +1,16 @@
 import { useQuery } from '@apollo/client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { GET_QUIZ } from '../../graphql/queries';
-import { AnswerContainer, CustomLink, Title } from './style';
+import { AnswerContainer, CustomLink, ErrorMessage, Title } from './style';
 import Header from '../../components/header/Header';
 import { Main } from '../../styles/globalSettings';
 import MainButton from '../../components/buttons/mainButton/MainButton';
 import Question from './question/Question';
 import SelectionElement from '../../components/list/SelectionElement';
+import errorIcon from '../../assets/images/icon-error.svg';
+import { useAppSelector } from '../../hooks/reduxTypedHooks';
+import { RootState } from '../../redux/store';
 
 interface QuestionType {
   __typename: string;
@@ -24,19 +27,22 @@ const Quiz: React.FC = () => {
   });
 
   //states declaration
-  const [currentQuestion, setCurrentQuestion] = React.useState<number | null>(
-    null
-  );
-  const [questions, setQuestions] = React.useState<QuestionType[] | null>(null);
-  const [options, setOptions] = React.useState<string[]>([]);
-  // const [answer, setAnswer] = React.useState<string>("");
+  const darkMode = useAppSelector((state: RootState) => state.darkMode);
+  const [currentQuestion, setCurrentQuestion] = useState<number | null>(null);
+  const [questions, setQuestions] = useState<QuestionType[] | null>(null);
+  const [options, setOptions] = useState<string[]>([]);
+  const [answer, setAnswer] = useState<string>('');
   // const [score, setScore] = React.useState<number>(0);
-  // const [selectedOption, setSelectedOption] = React.useState<string>("");
+  const [selectedOption, setSelectedOption] = useState<string>('');
+  const [isAnswered, setIsAnswered] = useState<boolean>(false);
 
   //functions
   const handleNextQuestion = async () => {
     await nextQuestion();
     await nextOptions();
+    await getAnswer();
+    setIsAnswered(false);
+    setSelectedOption('');
   };
 
   const nextQuestion = async () => {
@@ -54,12 +60,42 @@ const Quiz: React.FC = () => {
     setOptions(questions[currentQuestion + 1].options);
   };
 
+  const handleOptionClick = (option: string) => {
+    setIsAnswered(false);
+    setSelectedOption(option);
+  };
+
+  const getAnswer = async () => {
+    if (questions === null) return null;
+    if (currentQuestion === null) return null;
+    const answer = questions[currentQuestion].answer;
+    setAnswer(answer);
+  };
+
+  const handleSubmitAnswer = async () => {
+    setIsAnswered(true);
+    if (!selectedOption) return null;
+
+    const answerToCheck = selectedOption;
+  };
+
+  const handleClassName = (option: string) => {
+    if (isAnswered === false) return option === selectedOption ? 'active' : '';
+    if (option === selectedOption && selectedOption === answer)
+      return 'correctAnswer';
+    if (option === selectedOption && selectedOption !== answer)
+      return 'wrongAnswer';
+    if (option === answer) return 'correct';
+    return '';
+  };
+
   //useEffect
   useEffect(() => {
-    if (data) {
+    if (data && data.quiz) {
       setCurrentQuestion(0);
       setQuestions(data.quiz.questions);
       setOptions(data.quiz.questions[0].options);
+      setAnswer(data.quiz.questions[0].answer);
     }
   }, [data]);
 
@@ -97,11 +133,26 @@ const Quiz: React.FC = () => {
                   key={index}
                   option={option}
                   index={index}
-                  onClick={() => console.log('clicked')}
+                  onClick={() => handleOptionClick(option)}
+                  className={handleClassName(option)}
                 />
               ))}
             </ul>
-            <MainButton onClick={handleNextQuestion}>Submit Answer</MainButton>
+            {isAnswered && selectedOption && (
+              <MainButton onClick={handleNextQuestion}>Next Question</MainButton>
+            )}
+
+            {(!isAnswered || (isAnswered && selectedOption === "")) && (
+              <MainButton onClick={handleSubmitAnswer}>
+                Submit Answer
+              </MainButton>
+            )}
+            {isAnswered && selectedOption === '' && (
+              <ErrorMessage $darkMode={darkMode}>
+                <img src={errorIcon} alt="error icon" />
+                <span>Please select an answer</span>
+              </ErrorMessage>
+            )}
           </AnswerContainer>
         </Main>
       </>

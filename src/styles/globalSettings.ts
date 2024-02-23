@@ -19,6 +19,10 @@ export const theme = {
     octonary: '#26d782',
     nonary: '#ee5454',
     denary: ' #D394fa',
+    oncery: '#f6e7ff'
+
+    
+
     // Ajoutez d'autres couleurs ici
   },
   typography: {
@@ -50,7 +54,7 @@ export const theme = {
     },
     bodyM: {
       fontFamily: 'Rubik-Regular, sans-serif',
-      fontSize: '12px',
+      fontSize: '24px',
       lineHeight: '150%',
     },
     bodyS: {

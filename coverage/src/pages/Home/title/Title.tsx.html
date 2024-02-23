@@ -3,15 +3,15 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/main.tsx</title>
+    <title>Code coverage report for src/pages/Home/title/Title.tsx</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../../../favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">src</a> main.tsx</h1>
+        <h1><a href="../../../../index.html">All files</a> / <a href="index.html">src/pages/Home/title</a> Title.tsx</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>0/18</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>0/18</span>
             </div>
         
             
@@ -97,24 +97,24 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import React from 'react';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import ReactDOM from 'react-dom/client';</span>
-<span class="cstat-no" title="statement not covered" >import { Provider } from 'react-redux';</span>
-<span class="cstat-no" title="statement not covered" >import store from './redux/store.ts';</span>
-<span class="cstat-no" title="statement not covered" >import Router from './router/Router.tsx';</span>
-<span class="cstat-no" title="statement not covered" >import { ApolloProvider } from '@apollo/client';</span>
-<span class="cstat-no" title="statement not covered" >import { client } from './graphql/client.ts';</span>
+<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import React from 'react';</span></span></span>
+<span class="cstat-no" title="statement not covered" >import { useAppSelector } from '../../../hooks/reduxTypedHooks';</span>
+<span class="cstat-no" title="statement not covered" >import { RootState } from '../../../redux/store';</span>
+<span class="cstat-no" title="statement not covered" >import { TitleContainer } from './style';</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(</span>
-<span class="cstat-no" title="statement not covered" >  &lt;Provider store={store}&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;React.StrictMode&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;ApolloProvider client={client}&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;Router /&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/ApolloProvider&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/React.StrictMode&gt;</span>
-<span class="cstat-no" title="statement not covered" >  &lt;/Provider&gt;</span>
-<span class="cstat-no" title="statement not covered" >);</span>
-&nbsp;</pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >const Title : React.FC = () =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >const darkMode = useAppSelector((state: RootState) =&gt; state.darkMode);</span>
+<span class="cstat-no" title="statement not covered" >  return (</span>
+<span class="cstat-no" title="statement not covered" >    &lt;TitleContainer $darkMode = {darkMode}&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;p&gt;Welcome to the&lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;h1&gt;Frontend Quiz!&lt;/h1&gt;</span>
+<span class="cstat-no" title="statement not covered" >      &lt;span&gt;Pick a subject to get started.&lt;/span&gt;</span>
+<span class="cstat-no" title="statement not covered" >    &lt;/TitleContainer&gt;</span>
+<span class="cstat-no" title="statement not covered" >  );</span>
+<span class="cstat-no" title="statement not covered" >};</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >export default Title;</span></pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
@@ -123,14 +123,14 @@
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
                 at 2024-02-21T19:46:08.412Z
             </div>
-        <script src="../prettify.js"></script>
+        <script src="../../../../prettify.js"></script>
         <script>
             window.onload = function () {
                 prettyPrint();
             };
         </script>
-        <script src="../sorter.js"></script>
-        <script src="../block-navigation.js"></script>
+        <script src="../../../../sorter.js"></script>
+        <script src="../../../../block-navigation.js"></script>
     </body>
 </html>
     
