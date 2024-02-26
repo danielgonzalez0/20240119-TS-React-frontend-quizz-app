@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">38.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/54</span>
+                <span class='fraction'>21/54</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">38.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/54</span>
+                <span class='fraction'>21/54</span>
             </div>
         
             
@@ -117,7 +117,25 @@
 <a name='L52'></a><a href='#L52'>52</a>
 <a name='L53'></a><a href='#L53'>53</a>
 <a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L55'></a><a href='#L55'>55</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -151,45 +169,27 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import React from 'react';</span></span></span>
-<span class="cstat-no" title="statement not covered" >import { useAppDispatch, useAppSelector } from '../../../hooks/reduxTypedHooks';</span>
-<span class="cstat-no" title="statement not covered" >import { RootState } from '../../../redux/store';</span>
-<span class="cstat-no" title="statement not covered" >import { Main } from '../../../styles/globalSettings';</span>
-<span class="cstat-no" title="statement not covered" >import { TitleContainer } from '../../Home/title/style';</span>
-<span class="cstat-no" title="statement not covered" >import { ResultContainer, ScoreContainer } from './style';</span>
-<span class="cstat-no" title="statement not covered" >import Icons from '../../../components/icons/Icons';</span>
-<span class="cstat-no" title="statement not covered" >import MainButton from '../../../components/buttons/mainButton/MainButton';</span>
-<span class="cstat-no" title="statement not covered" >import { useNavigate } from 'react-router-dom';</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >interface Props {</span>
-<span class="cstat-no" title="statement not covered" >  title?: string;</span>
-<span class="cstat-no" title="statement not covered" >  icon?: string;</span>
-<span class="cstat-no" title="statement not covered" >  color?: string;</span>
-<span class="cstat-no" title="statement not covered" >  length?: number;</span>
-<span class="cstat-no" title="statement not covered" >  score?: number;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >const Result: React.FC&lt;Props&gt; = ({ ...props }) =&gt; {</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import { useAppDispatch, useAppSelector } from '../../../hooks/reduxTypedHooks';
+import { RootState } from '../../../redux/store';
+import { Main } from '../../../styles/globalSettings';
+import { TitleContainer } from '../../Home/title/style';
+import { ResultContainer, ScoreContainer } from './style';
+import Icons from '../../../components/icons/Icons';
+import MainButton from '../../../components/buttons/mainButton/MainButton';
+import { useNavigate } from 'react-router-dom';
+&nbsp;
+interface Props {
+  title?: string;
+  icon?: string;
+  color?: string;
+  length?: number;
+  score?: number;
+}
+&nbsp;
+const Result: React.FC&lt;Props&gt; = <span class="fstat-no" title="function not covered" >({ ...props }) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  const { title, icon, color, length, score } = props;</span>
 <span class="cstat-no" title="statement not covered" >  const darkMode = useAppSelector((state: RootState) =&gt; state.darkMode);</span>
 <span class="cstat-no" title="statement not covered" >  const dispatch = useAppDispatch();</span>
@@ -223,8 +223,8 @@
 <span class="cstat-no" title="statement not covered" >    &lt;/Main&gt;</span>
 <span class="cstat-no" title="statement not covered" >  );</span>
 <span class="cstat-no" title="statement not covered" >};</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >export default Result;</span>
+&nbsp;
+export default Result;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -232,7 +232,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-23T21:43:22.667Z
+                at 2024-02-26T11:50:01.823Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

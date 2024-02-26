@@ -114,8 +114,7 @@ const Quiz: React.FC = () => {
       if (Number(quizInfos.id) !== Number(quizId)) {
         dispatch({ type: 'quiz/setScore', payload: 0 });
         dispatch({ type: 'quiz/setCurrentQuestion', payload: 0 });
-        dispatch({type: 'quiz/setIsFinished', payload: false})
-       
+        dispatch({ type: 'quiz/setIsFinished', payload: false });
       }
       setQuestions(data.quiz.questions);
       setOptions(data.quiz.questions[currentQuestionState].options);
@@ -134,12 +133,12 @@ const Quiz: React.FC = () => {
   //rendering
   if (loading) return <Title>Loading...</Title>;
 
-  if (error) return <Title>Error! ${error.message}</Title>;
+  if (error) return <Title>An error occurred</Title>;
 
   if (!data.quiz)
     return (
       <Title>
-        Erreur 404: this page does not exist.
+        <span>Error 404: this page does not exist.</span>
         <CustomLink to="/">Return to the home page</CustomLink>
       </Title>
     );
