@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.27% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>48/55</span>
+                <span class='fraction'>55/55</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">91.66% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>11/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>9/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.27% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>48/55</span>
+                <span class='fraction'>55/55</span>
             </div>
         
             
@@ -164,13 +164,13 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
@@ -184,30 +184,30 @@ interface Props {
 }
 &nbsp;
 const Button = styled.button&lt;{ $darkMode: boolean }&gt;`
-  font-family: ${<span class="fstat-no" title="function not covered" >({ theme }) =&gt; theme.typography.headingS.fontFamily}</span>;
-  font-size: ${<span class="fstat-no" title="function not covered" >({ theme }) =&gt; theme.typography.headingS.fontSize}</span>;
-  line-height: ${<span class="fstat-no" title="function not covered" >({ theme }) =&gt; theme.typography.headingS.lineHeight}</span>;
-  color: ${<span class="fstat-no" title="function not covered" >({ theme }) =&gt; theme.colors.septenary}</span>;
+  font-family: ${({ theme }) =&gt; theme.typography.headingS.fontFamily};
+  font-size: ${({ theme }) =&gt; theme.typography.headingS.fontSize};
+  line-height: ${({ theme }) =&gt; theme.typography.headingS.lineHeight};
+  color: ${({ theme }) =&gt; theme.colors.septenary};
   width: 100%;
   height: 92px;
   border-radius: 24px;
   padding: 18px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  background-color: ${<span class="fstat-no" title="function not covered" >({ theme }) =&gt; theme.colors.primary}</span>;
+  background-color: ${({ theme }) =&gt; theme.colors.primary};
   box-shadow: 0px 16px 40px 0px
-    ${<span class="fstat-no" title="function not covered" >({ $darkMode }) =&gt; ($darkMode ? '#313e51' : '#8fa0c124')}</span>;
+    ${({ $darkMode }) =&gt; (<span class="branch-0 cbranch-no" title="branch not covered" >$darkMode ? '#313e51' : '</span>#8fa0c124')};
   border: none;
   outline: none;
 &nbsp;
   &amp;:hover,
   &amp;:focus-visible,
   &amp;:active {
-    background-color: ${<span class="fstat-no" title="function not covered" >({ theme }) =&gt; theme.colors.denary}</span>;
+    background-color: ${({ theme }) =&gt; theme.colors.denary};
   }
   &amp;:focus-visible,
   &amp;:active {
-    outline: solid 2px ${<span class="fstat-no" title="function not covered" >({ theme }) =&gt; theme.colors.primary}</span>;
+    outline: solid 2px ${({ theme }) =&gt; theme.colors.primary};
   }
 &nbsp;
   @media screen and (max-width: ${({ theme }) =&gt; theme.size.smallmobile}) {
@@ -218,14 +218,14 @@ const Button = styled.button&lt;{ $darkMode: boolean }&gt;`
   }
 `;
 &nbsp;
-const MainButton: React.FC&lt;Props&gt; = <span class="fstat-no" title="function not covered" >({ onClick, children }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const darkMode = useAppSelector((state: RootState) =&gt; state.darkMode);</span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;Button onClick={onClick} $darkMode={darkMode}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      {children}</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/Button&gt;</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+const MainButton: React.FC&lt;Props&gt; = ({ onClick, children }) =&gt; {
+  const darkMode = useAppSelector((state: RootState) =&gt; state.darkMode);
+  return (
+    &lt;Button onClick={onClick} $darkMode={darkMode}&gt;
+      {children}
+    &lt;/Button&gt;
+  );
+};
 &nbsp;
 export default MainButton;
 &nbsp;</pre></td></tr></table></pre>
@@ -235,7 +235,7 @@ export default MainButton;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-26T11:50:01.823Z
+                at 2024-02-26T14:22:32.753Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

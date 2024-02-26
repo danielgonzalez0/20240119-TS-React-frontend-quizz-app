@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.33% </span>
+                <span class="strong">96.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>38/60</span>
+                <span class='fraction'>58/60</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">50% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.33% </span>
+                <span class="strong">96.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>38/60</span>
+                <span class='fraction'>58/60</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -159,28 +159,28 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
@@ -218,29 +218,29 @@ interface Props {
   className?: string;
 }
 &nbsp;
-const SelectionElement: React.FC&lt;Props&gt; = <span class="fstat-no" title="function not covered" >({ option, index, onClick, onKeyDown, className}) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const darkMode = useAppSelector((state: RootState) =&gt; state.darkMode);</span>
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;ListContainer</span>
-<span class="cstat-no" title="statement not covered" >      $darkMode={darkMode}</span>
-<span class="cstat-no" title="statement not covered" >      onClick={onClick}</span>
-<span class="cstat-no" title="statement not covered" >      onKeyDown={onKeyDown}</span>
-<span class="cstat-no" title="statement not covered" >      tabIndex={0}</span>
-<span class="cstat-no" title="statement not covered" >      className={className}</span>
-<span class="cstat-no" title="statement not covered" >    &gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;ListIcon&gt;{choicesTitle[index]}&lt;/ListIcon&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;ListTitle $darkMode={darkMode}&gt;{option}&lt;/ListTitle&gt;</span>
-<span class="cstat-no" title="statement not covered" >      {(className === 'correctAnswer' || className === 'correct') &amp;&amp; (</span>
+const SelectionElement: React.FC&lt;Props&gt; = ({ option, index, onClick, onKeyDown, className}) =&gt; {
+  const darkMode = useAppSelector((state: RootState) =&gt; state.darkMode);
+  return (
+    &lt;ListContainer
+      $darkMode={darkMode}
+      onClick={onClick}
+      onKeyDown={onKeyDown}
+      tabIndex={0}
+      className={className}
+    &gt;
+      &lt;ListIcon&gt;{choicesTitle[index]}&lt;/ListIcon&gt;
+      &lt;ListTitle $darkMode={darkMode}&gt;{option}&lt;/ListTitle&gt;
+      {(className === 'correctAnswer' || className === <span class="branch-0 cbranch-no" title="branch not covered" >'correct') &amp;&amp; (</span>
 <span class="cstat-no" title="statement not covered" >        &lt;ListIconAnswer src={correctIcon} alt="correct icon" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >      )}</span>
-<span class="cstat-no" title="statement not covered" >      {className === 'wrongAnswer' &amp;&amp; (</span>
+      )}
+      {className === <span class="branch-0 cbranch-no" title="branch not covered" >'wrongAnswer' &amp;&amp; (</span>
 <span class="cstat-no" title="statement not covered" >        &lt;ListIconAnswer src={wrongIcon} alt="wrong icon" /&gt;</span>
-<span class="cstat-no" title="statement not covered" >      )}</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >  </span>
-<span class="cstat-no" title="statement not covered" >    &lt;/ListContainer&gt;</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+      )}
+&nbsp;
+  
+    &lt;/ListContainer&gt;
+  );
+};
 &nbsp;
 export default SelectionElement;
 &nbsp;</pre></td></tr></table></pre>
@@ -250,7 +250,7 @@ export default SelectionElement;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-26T11:50:01.823Z
+                at 2024-02-26T14:22:32.753Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
