@@ -42,6 +42,7 @@ const SelectionElement: React.FC<Props> = ({ option, index, onClick, onKeyDown, 
       onKeyDown={onKeyDown}
       tabIndex={0}
       className={className}
+      data-testid={`index-${index}`}
     >
       <ListIcon>{choicesTitle[index]}</ListIcon>
       <ListTitle $darkMode={darkMode}>{option}</ListTitle>

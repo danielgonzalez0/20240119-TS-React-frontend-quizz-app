@@ -1,17 +1,36 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { describe, expect, test } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 import '@testing-library/jest-dom';
 import Quiz from './Quiz';
 import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import { Provider } from 'react-redux';
-import store from '../../redux/store';
+
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/globalSettings';
 import { GET_QUIZ } from '../../graphql/queries';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-
+import { Store, configureStore } from '@reduxjs/toolkit';
+import { RootState, rootReducer } from '../../redux/store';
 
 describe('Quiz component', () => {
+  let store: Store<RootState>;
+
+  beforeEach(() => {
+    store = configureStore({
+      reducer: rootReducer,
+      preloadedState: {
+        quiz: {
+          id: 1,
+          title: 'Test Quiz',
+          icon: 'test-icon',
+          score: 0,
+          currentQuestion: 0,
+          isFinished: false,
+        },
+      },
+    });
+  });
+
   const renderComponent = (mocks: MockedResponse[], route: string) => {
     render(
       <Provider store={store}>
@@ -71,7 +90,6 @@ describe('Quiz component', () => {
       renderComponent(emptyDataMocks, '/quiz/10');
 
       await waitFor(() => {
-
         const errorMessage = screen.getByText(
           'Error 404: this page does not exist.'
         );
@@ -126,7 +144,7 @@ describe('Quiz component', () => {
       const option2 = await screen.findByText('Option 2');
       const option3 = await screen.findByText('Option 3');
       const option4 = await screen.findByText('Option 4');
-      
+
       expect(title).toBeInTheDocument();
       expect(question).toBeInTheDocument();
       expect(option1).toBeInTheDocument();
@@ -142,12 +160,134 @@ describe('Quiz component', () => {
     test('should render "Please select an answer" message when no option is selected', async () => {
       renderComponent(dataMocks, '/quiz/1');
       await screen.findByText('Test Quiz');
-  
-      const submitButton = screen.getByRole('button', { name: /submit answer/i });
+
+      const submitButton = screen.getByRole('button', {
+        name: /submit answer/i,
+      });
       fireEvent.click(submitButton);
       const errorMessage = screen.getByText('Please select an answer');
       expect(errorMessage).toBeInTheDocument();
-      
+    });
+
+    test('should render next question button when an option is selected', async () => {
+      renderComponent(dataMocks, '/quiz/1');
+      await screen.findByText('Test Quiz');
+
+      const option1 = screen.getByTestId('index-0');
+      fireEvent.click(option1);
+
+      const answerButton = screen.getByRole('button', {
+        name: /Submit Answer/i,
+      });
+
+      fireEvent.click(answerButton);
+
+      const submitButton = screen.getByRole('button', {
+        name: /Next Question/i,
+      });
+      expect(submitButton).toBeInTheDocument();
+    });
+    test('should render correct answer and update quiz store when correct option is submitted', async () => {
+      renderComponent(dataMocks, '/quiz/1');
+      await screen.findByText('Test Quiz');
+
+      const option1 = screen.getByTestId('index-0');
+      fireEvent.click(option1);
+
+      const answerButton = screen.getByRole('button', {
+        name: /Submit Answer/i,
+      });
+
+      fireEvent.click(answerButton);
+      const state: RootState = store.getState();
+
+      expect(option1).toHaveClass('correctAnswer');
+
+      const submitButton = screen.getByRole('button', {
+        name: /Next Question/i,
+      });
+      fireEvent.click(submitButton);
+
+      await screen.findByText('question 2');
+
+      expect(state.quiz.score).toBe(1);
+      await waitFor(() =>
+        expect(store.getState().quiz.currentQuestion).toBe(1)
+      );
+      expect(state.quiz.isFinished).toBe(false);
+
+      // console.log(store.getState().quiz);
+    });
+    test('should render correct and false answer when false option is submitted', async () => {
+      renderComponent(dataMocks, '/quiz/1');
+      await screen.findByText('Test Quiz');
+
+      const option1 = screen.getByTestId('index-0');
+      const option2 = screen.getByTestId('index-1');
+      fireEvent.click(option2);
+
+      const answerButton = screen.getByRole('button', {
+        name: /Submit Answer/i,
+      });
+
+      fireEvent.click(answerButton);
+      const state: RootState = store.getState();
+
+      expect(option1).toHaveClass('correct');
+      expect(option2).toHaveClass('wrongAnswer');
+
+      const submitButton = screen.getByRole('button', {
+        name: /Next Question/i,
+      });
+      fireEvent.click(submitButton);
+
+      expect(state.quiz.score).toBe(0);
+      await waitFor(() =>
+        expect(store.getState().quiz.currentQuestion).toBe(1)
+      );
+      expect(state.quiz.isFinished).toBe(false);
+    });
+
+    test('should render final score and finish message when last question is submitted', async () => {
+      store = configureStore({
+        reducer: rootReducer,
+        preloadedState: {
+          quiz: {
+            id: 1,
+            title: 'Test Quiz',
+            icon: 'test-icon',
+            score: 2,
+            currentQuestion: 2,
+            isFinished: false,
+          },
+        },
+      });
+      renderComponent(dataMocks, '/quiz/1');
+      await screen.findByText('question 3');
+      const option1 = screen.getByTestId('index-0');
+      fireEvent.click(option1);
+
+      const answerButton = screen.getByRole('button', {
+        name: /Submit Answer/i,
+      });
+
+      fireEvent.click(answerButton);
+      const state: RootState = store.getState();
+
+      const submitButton = screen.getByRole('button', {
+        name: /Next Question/i,
+      });
+
+      fireEvent.click(submitButton);
+
+      expect(state.quiz.score).toBe(3);
+      await waitFor(() => {
+        expect(store.getState().quiz.currentQuestion).toBe(2);
+        expect(store.getState().quiz.isFinished).toBe(true);
+      });
+
+      await screen.findByText('Quiz completed');
+      expect(screen.getByText('Play Again')).toBeInTheDocument();
     });
 
     //end of describe
