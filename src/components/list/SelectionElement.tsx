@@ -5,12 +5,7 @@ import { useAppSelector } from '../../hooks/reduxTypedHooks';
 import correctIcon from '../../assets/images/icon-correct.svg';
 import wrongIcon from '../../assets/images/icon-error.svg';
 
-interface Props {
-  option: string;
-  index: number;
-  onClick: () => void;
-  clasname?: string;
-}
+
 
 const choicesTitle: string[] = [
   'A',
@@ -28,8 +23,8 @@ const choicesTitle: string[] = [
 interface Props {
   option: string;
   index: number;
-  onClick: () => void;
-  onKeyDown?: (e?: React.KeyboardEvent<HTMLLIElement>) => void;
+  onClick?: (e?: React.MouseEvent<HTMLElement>) => void;
+  onKeyDown?: (e?: React.KeyboardEvent<HTMLElement>) => void;
   className?: string;
 }
 

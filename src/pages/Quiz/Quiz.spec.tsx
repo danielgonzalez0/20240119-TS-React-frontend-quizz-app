@@ -4,13 +4,13 @@ import '@testing-library/jest-dom';
 import Quiz from './Quiz';
 import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import { Provider } from 'react-redux';
-
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../../styles/globalSettings';
 import { GET_QUIZ } from '../../graphql/queries';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { Store, configureStore } from '@reduxjs/toolkit';
 import { RootState, rootReducer } from '../../redux/store';
+
 
 describe('Quiz component', () => {
   let store: Store<RootState>;
@@ -26,6 +26,8 @@ describe('Quiz component', () => {
           score: 0,
           currentQuestion: 0,
           isFinished: false,
+          isAnswered: false,
+          selectedOption: '',
         },
       },
     });
@@ -200,7 +202,7 @@ describe('Quiz component', () => {
 
       fireEvent.click(answerButton);
       const state: RootState = store.getState();
-
+   
       expect(option1).toHaveClass('correctAnswer');
 
       const submitButton = screen.getByRole('button', {
@@ -246,6 +248,7 @@ describe('Quiz component', () => {
         expect(store.getState().quiz.currentQuestion).toBe(1)
       );
       expect(state.quiz.isFinished).toBe(false);
+    expect(state.quiz.isAnswered).toBe(true);
     });
 
     test('should render final score and finish message when last question is submitted', async () => {
@@ -259,6 +262,8 @@ describe('Quiz component', () => {
             score: 2,
             currentQuestion: 2,
             isFinished: false,
+            isAnswered: false,
+            selectedOption: '',
           },
         },
       });
