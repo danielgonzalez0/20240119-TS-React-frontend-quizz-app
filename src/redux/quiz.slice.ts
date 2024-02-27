@@ -7,16 +7,26 @@ interface QuizState {
   score: number;
   currentQuestion: number;
   isFinished: boolean;
+  isAnswered: boolean;
+  selectedOption: string;
 }
 
-const initialState: QuizState = {
+const defaultState: QuizState = {
   id: 0,
   title: '',
   icon: '',
   score: 0,
   currentQuestion: 0,
   isFinished: false,
+  isAnswered: false,
+  selectedOption: '',
 };
+
+const savedQuizState = localStorage.getItem('quizState');
+
+const initialState: QuizState = savedQuizState
+  ? JSON.parse(savedQuizState)
+  : defaultState;
 
 const quizSlice = createSlice({
   name: 'quiz',
@@ -43,8 +53,14 @@ const quizSlice = createSlice({
     setIsFinished: (state, action) => {
       state.isFinished = action.payload;
     },
-  },
-});
+    setIsAnswered: (state, action) => {
+      state.isAnswered = action.payload;
+    },
+    setSelectedOption: (state, action) => {
+      state.selectedOption = action.payload;
+    },
+    }
+  });
 
 export const {
   setQuizInfos,
@@ -52,6 +68,8 @@ export const {
   setCurrentQuestion,
   deleteQuizInfos,
   setIsFinished,
+  setIsAnswered,
+  setSelectedOption,
 } = quizSlice.actions;
 
 export default quizSlice.reducer;

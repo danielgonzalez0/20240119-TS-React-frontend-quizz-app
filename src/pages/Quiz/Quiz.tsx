@@ -10,8 +10,9 @@ import Question from './question/Question';
 import SelectionElement from '../../components/list/SelectionElement';
 import errorIcon from '../../assets/images/icon-error.svg';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxTypedHooks';
-import { RootState } from '../../redux/store';
+import store, { RootState } from '../../redux/store';
 import Result from './result/Result';
+
 
 interface QuestionType {
   __typename: string;
@@ -32,9 +33,7 @@ const Quiz: React.FC = () => {
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [options, setOptions] = useState<string[]>([]);
   const [answer, setAnswer] = useState<string>('');
-  const [selectedOption, setSelectedOption] = useState<string>('');
-  const [isAnswered, setIsAnswered] = useState<boolean>(false);
-
+  
   //hooks
   const dispatch = useAppDispatch();
   const scoreState = useAppSelector((state: RootState) => state.quiz.score);
@@ -45,6 +44,13 @@ const Quiz: React.FC = () => {
   const isFinisehdState = useAppSelector(
     (state: RootState) => state.quiz.isFinished
   );
+  const isAnswered = useAppSelector((state: RootState) => state.quiz.isAnswered);
+
+  const setIsAnswered = (value: boolean) => dispatch({ type: 'quiz/setIsAnswered', payload: value });
+
+  const selectedOption = useAppSelector((state: RootState) => state.quiz.selectedOption);
+  const setSelectedOption = (value: string) => dispatch({ type: 'quiz/setSelectedOption', payload: value });
+
 
   //functions
   const handleNextQuestion = async () => {
@@ -55,19 +61,25 @@ const Quiz: React.FC = () => {
     setSelectedOption('');
   };
 
+  const handleLocalStorage = () => {
+    const quizState = store.getState().quiz;
+    localStorage.setItem('quizState', JSON.stringify(quizState));
+  };
+
   const nextQuestion = async () => {
     let newIndex: number;
 
     if (currentQuestionState < questions.length - 1) {
       newIndex = currentQuestionState + 1;
+      dispatch({
+        type: 'quiz/setCurrentQuestion',
+        payload: newIndex,
+      });
+      handleLocalStorage();
     } else {
-      newIndex = currentQuestionState;
+      localStorage.removeItem('quizState');
       dispatch({ type: 'quiz/setIsFinished', payload: true });
     }
-    dispatch({
-      type: 'quiz/setCurrentQuestion',
-      payload: newIndex,
-    });
   };
 
   const nextOptions = async () => {
@@ -96,7 +108,11 @@ const Quiz: React.FC = () => {
     const answerToCheck = selectedOption;
     if (answerToCheck === answer)
       dispatch({ type: 'quiz/setScore', payload: scoreState + 1 });
+handleLocalStorage();
+
   };
+
+
 
   const handleClassName = (option: string) => {
     if (isAnswered === false) return option === selectedOption ? 'active' : '';
@@ -110,13 +126,18 @@ const Quiz: React.FC = () => {
 
   //useEffect
   useEffect(() => {
+    const dataLocal = JSON.parse(localStorage.getItem('quizState') || '{}');
+    const localQuizId = dataLocal ? Number(dataLocal.id) : 0;
+    
     if (data && data.quiz) {
+      // if (localQuizId !== Number(quizId)) {
       if (Number(quizInfos.id) !== Number(quizId)) {
         dispatch({ type: 'quiz/setScore', payload: 0 });
         dispatch({ type: 'quiz/setCurrentQuestion', payload: 0 });
-        dispatch({type: 'quiz/setIsFinished', payload: false})
-       
+        dispatch({ type: 'quiz/setIsFinished', payload: false });
       }
+      if (localQuizId !== Number(quizId)) localStorage.removeItem('quizState');
+        
       setQuestions(data.quiz.questions);
       setOptions(data.quiz.questions[currentQuestionState].options);
       setAnswer(data.quiz.questions[currentQuestionState].answer);
@@ -134,12 +155,12 @@ const Quiz: React.FC = () => {
   //rendering
   if (loading) return <Title>Loading...</Title>;
 
-  if (error) return <Title>Error! ${error.message}</Title>;
+  if (error) return <Title>An error occurred</Title>;
 
   if (!data.quiz)
     return (
       <Title>
-        Erreur 404: this page does not exist.
+        <span>Error 404: this page does not exist.</span>
         <CustomLink to="/">Return to the home page</CustomLink>
       </Title>
     );
@@ -181,10 +202,10 @@ const Quiz: React.FC = () => {
                       option={option}
                       index={index}
                       onClick={() => handleOptionClick(option)}
-                      onKeyDown={(e?: React.KeyboardEvent<HTMLLIElement>) => {
+                      onKeyDown={(e?: React.KeyboardEvent<HTMLElement>) => {
                         if (e && e.key === 'Enter') handleOptionClick(option);
                       }}
-                      className={isAnswered ? handleClassName(option) : ''}
+                      className={handleClassName(option)}
                     />
                   ))}
                 </ul>

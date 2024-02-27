@@ -2,7 +2,7 @@ import { Store, combineReducers, configureStore } from '@reduxjs/toolkit';
 import darkModeSlice from './darkMode.slice';
 import quizSlice from './quiz.slice';
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   darkMode: darkModeSlice,
   quiz: quizSlice,
 });

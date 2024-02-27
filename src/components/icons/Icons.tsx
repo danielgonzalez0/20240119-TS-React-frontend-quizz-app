@@ -14,8 +14,12 @@ const Icons: React.FC<Props> = (props) => {
 
   return (
     <IconContainer>
-      <div className="icon-container" style={{ backgroundColor: `${color}` }}>
-        <img src={icon} alt={title} />
+      <div
+        className="icon-container"
+        data-testid="iconHeader"
+        style={{ backgroundColor: `${color}` }}
+      >
+        <img src={icon} alt={title} data-testid="imgHeader" />
       </div>
       <IconTitle>{title}</IconTitle>
     </IconContainer>
