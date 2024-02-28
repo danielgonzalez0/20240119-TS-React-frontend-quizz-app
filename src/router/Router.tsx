@@ -15,8 +15,8 @@ const AppRouter: React.FC = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="*" element={<Home />} />
           <Route path="/quiz/:quizId" element={<Quiz />} />
+          <Route path="*" element={<Home />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
