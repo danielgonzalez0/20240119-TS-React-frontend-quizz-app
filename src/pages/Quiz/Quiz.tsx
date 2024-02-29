@@ -130,11 +130,11 @@ handleLocalStorage();
     const localQuizId = dataLocal ? Number(dataLocal.id) : 0;
     
     if (data && data.quiz) {
-      // if (localQuizId !== Number(quizId)) {
       if (Number(quizInfos.id) !== Number(quizId)) {
         dispatch({ type: 'quiz/setScore', payload: 0 });
         dispatch({ type: 'quiz/setCurrentQuestion', payload: 0 });
         dispatch({ type: 'quiz/setIsFinished', payload: false });
+        dispatch({ type: 'quiz/setIsAnswered', payload: false });
       }
       if (localQuizId !== Number(quizId)) localStorage.removeItem('quizState');
         
