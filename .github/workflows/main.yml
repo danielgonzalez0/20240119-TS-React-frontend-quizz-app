@@ -14,22 +14,24 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
-      - name: install nodes 18
-        uses: actions/setup-node@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'pnpm'
 
-      - name: install dependencies
+      - name: Install dependencies
         run: pnpm install
 
-      - name: run linter
-        run: npm run lint
+      - name: Run linter
+        run: pnpm run lint
 
-      - name: run type check
-        run: npm run typecheck
+      - name: Run type check
+        run: pnpm run typecheck
 
   build_and_test:
     runs-on: ubuntu-latest
@@ -39,19 +41,21 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
-      - name: install nodes 18
-        uses: actions/setup-node@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: 'pnpm'
 
-      - name: install dependencies
+      - name: Install dependencies
         run: pnpm install
 
-      - name: run test
-        run: npm run test
+      - name: Run test
+        run: pnpm run test
 
-      - name: run build
-        run: npm run build
+      - name: Run build
+        run: pnpm run build
